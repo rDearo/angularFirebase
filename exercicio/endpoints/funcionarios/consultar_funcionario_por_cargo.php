@@ -2,7 +2,11 @@
     include '../../conexao.php';
     include '../../cors.php'
 
-    $sql = "SELECT * FROM Funcionarios";
+    $data = file_get_contents("php://input");
+
+    $requestData = json_decode($data);
+
+    $sql = "SELECT * FROM Funcionarios WHERE Cargo='$requestData->Cargo'";
 
     $result = $connection->query($sql);
 
