@@ -10,7 +10,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'funcionarios',
+    loadChildren: () => import('./funcionarios/funcionarios.module').then( m => m.FuncionariosPageModule)
   }
+
 ];
 
 @NgModule({
