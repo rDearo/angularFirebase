@@ -6,7 +6,7 @@
 
     $requestData = json_decode($data);
 
-    $sql = "SELECT * FROM Funcionarios WHERE Cidade='$requestData->Cidade'";
+    $sql = "SELECT * FROM Funcionarios WHERE '$requestData->filtro'='$requestData->texto'";
 
     $result = $connection->query($sql);
 
@@ -27,5 +27,4 @@
     }
 
     echo json_encode($response);
-
 ?>

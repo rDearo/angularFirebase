@@ -1,13 +1,115 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>funcionarios</ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">funcionarios</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<form #form_pesquisar = 'ngForm'>
+    <ion-row>
+      <ion-col size="8">
+        <ion-searchbar ngModel name="search" fill="outline" placeholder="Pesquisar Funcionário"  id="barra_pesquisa"></ion-searchbar>
+      </ion-col>
+      <ion-col size="2">
+        <ion-list>
+          <ion-item>
+            <ion-select fill="solid" aria-label="Filtro" value="filtro">
+              <ion-select-option value="nome">Nome</ion-select-option>
+              <ion-select-option value="cargo">Cargo</ion-select-option>
+              <ion-select-option value="cidade">Cidade</ion-select-option>
+              <ion-select-option value="fone">Telefone</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+
+      <ion-col>
+        <ion-button type="submit" id="botao_pesquisa" fill="outline"><ion-icon name="search-outline"></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+    
+  <ion-row>
+    <ion-button id="open-modal" color="success"shape="round">+ Novo Funcionário</ion-button>
+  </ion-row>
+  
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ng-container *ngFor="let funcionario of this.funcionariosCadastrados">
+            <form #form='ngForm'>
+            <ion-item>
+                <ion-label>{{ funcionario.CodFun }}</ion-label>
+                <ion-input [(ngModel)]="funcionario.Nome" name="nome"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Sobrenome" name="sobrenome"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Salario" name="salario"></ion-input>
+                <ion-input [(ngModel)]="funcionario.DataNasc" name="dataNasc"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Endereco" name="endereco"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Cidade" name="cidade"></ion-input>
+                <ion-input [(ngModel)]="funcionario.CEP" name="cep"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Pais" name="pais"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Fone" name="fone"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Cargo" name="cargo"></ion-input>
+                
+              <ion-button color="success" type="submit"><ion-icon name="checkmark-outline"></ion-icon></ion-button> 
+              <ion-button color="danger" (click)="deletarFuncionario(funcionario.CodFun)"><ion-icon name="close-outline"></ion-icon></ion-button>
+            </ion-item>
+          </form>
+        </ng-container>
+        </ion-list>
+
+        
+
+        <!-- ION MODAL  -->
+        <ion-modal trigger="open-modal">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-title>Formulário de Cadastro</ion-title>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+
+                <form #cadastrar_funcionario = 'ngForm' (onSubmit)="cadastrarNovoFuncionario(cadastrar_funcionario.value)">
+     
+                    <ion-input label="Nome:" fill="solid" ngModel name="nome"></ion-input>
+             
+                    <ion-input label="Sobrenome:" fill="solid" ngModel name="sobrenome"></ion-input>
+
+                    <ion-input label="Cargo:" fill="solid" ngModel name="cargo"></ion-input>
+          
+                    <ion-input label="Salário:" fill="solid" ngModel name="salario"></ion-input>
+      
+                    <ion-input label="Data de Nasc:" fill="solid" ngModel name="dataNasc" type="date"></ion-input>
+
+                    <ion-input label="País:" fill="solid" ngModel name="pais"></ion-input>
+
+                    <ion-input label="Cidade:" fill="solid" ngModel name="cidade"></ion-input>
+
+                    <ion-input label="CEP:" fill="solid" ngModel name="cep"></ion-input>
+
+                    <ion-input label="Endereço:" fill="solid" ngModel name="endereco"></ion-input>
+
+                    <ion-input label="Telefone:" fill="solid" ngModel name="fone"></ion-input>
+
+
+                  <ion-button type="submit" color="success" expand="full">Cadastrar</ion-button>
+                </form>
+                
+              </ion-item>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+      <!-- FIM ION MODAL-->
+
+
+
+      </ion-col>
+    </ion-row>
+
+
+
+  
+
 </ion-content>
