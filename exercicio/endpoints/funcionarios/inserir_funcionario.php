@@ -1,21 +1,23 @@
 <?php
     include '../../conexao.php';
-    include '../../cors.php'
+    include '../../cors.php';
 
-    $data = file_get_contents("php://input");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $data = file_get_contents("php://input");
 
-    $requestData = json_decode($data);
+        $requestData = json_decode($data);
 
-    $sql = "INSERT INTO `Funcionarios`(`CodCli`, `Nome`, `Cargo`, `Endereco`, `Cidade`, `CEP`, `Pais`, `Telefone`) VALUES ('$requestData->CodFun','$requestData->Nome','$requestData->','$requestData->Cargo','$requestData->Endereco','$requestData->Cidade','$requestData->CEP','$requestData->Pais','$requestData->Fone')";
+        $sql = "INSERT INTO funcionarios VALUES (0, '$requestData->Sobrenome', '$requestData->Nome','$requestData->Cargo','$requestData->DataNasc','$requestData->Endereco','$requestData->Cidade','$requestData->CEP','$requestData->Pais','$requestData->Fone', '$requestData->Salario')";
 
-    $result = $connection->query($sql);
+        $result = $connection->query($sql);
 
-    if ($result === true) {
-        echo "Dados inseridos com sucesso!";
-    } else {
-        echo "Erro ao inserir dados: " . $connection->error;
+        if ($result === true) {
+            echo "Dados inseridos com sucesso!";
+        } else {
+            echo "Erro ao inserir dados: " . $connection->error;
+        }
+
+        echo json_encode($result);
     }
-
-    echo json_encode($response);
 
 ?>

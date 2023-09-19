@@ -36,7 +36,7 @@
       <ion-col size="12">
         <ion-list>
           <ng-container *ngFor="let funcionario of this.funcionariosCadastrados">
-            <form #form='ngForm'>
+            <form #atualizar_funcionario='ngForm' (ngSubmit)="atualizarFuncionario(funcionario.CodFun, atualizar_funcionario.value)">
             <ion-item>
                 <ion-label>{{ funcionario.CodFun }}</ion-label>
                 <ion-input [(ngModel)]="funcionario.Nome" name="nome"></ion-input>
