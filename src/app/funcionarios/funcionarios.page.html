@@ -4,6 +4,8 @@
 
 <ion-content [fullscreen]="true">
 
+<ion-label>{{ this.nome_usuario }}</ion-label>
+
 <form #pesquisar_funcionario='ngForm' (ngSubmit)="pesquisarFuncionarioFiltrado(pesquisar_funcionario.value)">
     <ion-row>
       <ion-col size="8">

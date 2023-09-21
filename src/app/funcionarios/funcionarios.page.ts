@@ -19,7 +19,12 @@ export class FuncionariosPage{
     fetch('http://localhost/exercicio/endpoints/funcionarios/listar_funcionario.php')
     .then(response => response.json())
     .then(response => {
-      this.funcionariosCadastrados = response['funcionarios']
+      if(response['funcionarios']=='Nenhum registro encontrado!'){
+
+      }
+      else{
+        this.funcionariosCadastrados = response['funcionarios']
+      }
     })
     .catch(erro => {
       console.log(erro);
@@ -96,6 +101,20 @@ export class FuncionariosPage{
 
   atualizarFuncionario(id: any, dadosAtualizados: any){
     this.isLoading = true;
+    console.log(id)
+    console.log(dadosAtualizados.nome)
+    console.log(dadosAtualizados.sobrenome)
+    console.log(dadosAtualizados.cargo)
+    console.log(dadosAtualizados.salario)
+    console.log(dadosAtualizados.dataNasc)
+    console.log(dadosAtualizados.pais)
+    console.log(dadosAtualizados.cidade)
+    console.log(dadosAtualizados.cep)
+    console.log(dadosAtualizados.endereco)
+    console.log(dadosAtualizados.fone)
+
+
+    
     fetch('http://localhost/exercicio/endpoints/funcionarios/atualizar_funcionario.php',
 			{
 			  method: 'PUT',
@@ -118,7 +137,6 @@ export class FuncionariosPage{
           })
 			}
 		)
-    .then(response => response.json())
     .then(response => {
       console.log(response);
     })
