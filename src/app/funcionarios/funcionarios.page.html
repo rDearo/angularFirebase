@@ -4,19 +4,19 @@
 
 <ion-content [fullscreen]="true">
 
-<form #form_pesquisar = 'ngForm'>
+<form #pesquisar_funcionario='ngForm' (ngSubmit)="pesquisarFuncionarioFiltrado(pesquisar_funcionario.value)">
     <ion-row>
       <ion-col size="8">
-        <ion-searchbar ngModel name="search" fill="outline" placeholder="Pesquisar Funcionário"  id="barra_pesquisa"></ion-searchbar>
+        <ion-searchbar ngModel name="search" fill="outline" placeholder="Pesquisar Funcionário" ngModel id="barra_pesquisa"></ion-searchbar>
       </ion-col>
       <ion-col size="2">
         <ion-list>
           <ion-item>
-            <ion-select fill="solid" aria-label="Filtro" value="filtro">
-              <ion-select-option value="nome">Nome</ion-select-option>
-              <ion-select-option value="cargo">Cargo</ion-select-option>
-              <ion-select-option value="cidade">Cidade</ion-select-option>
-              <ion-select-option value="fone">Telefone</ion-select-option>
+            <ion-select fill="solid" aria-label="Filtro" ngModel name="filtro" value="filtro">
+              <ion-select-option value="Nome">Nome</ion-select-option>
+              <ion-select-option value="Cargo">Cargo</ion-select-option>
+              <ion-select-option value="Cidade">Cidade</ion-select-option>
+              <ion-select-option value="Fone">Telefone</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
@@ -70,7 +70,7 @@
             <ion-content class="ion-padding">
               <ion-item>
 
-                <form #cadastrar_funcionario = 'ngForm' (onSubmit)="cadastrarNovoFuncionario(cadastrar_funcionario.value)">
+                <form #cadastrar_funcionario = 'ngForm' (ngSubmit)="cadastrarNovoFuncionario(cadastrar_funcionario.value)">
      
                     <ion-input label="Nome:" fill="solid" ngModel name="nome"></ion-input>
              

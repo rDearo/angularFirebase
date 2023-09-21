@@ -30,8 +30,30 @@ export class FuncionariosPage{
   }
 
 
-  pesquisarFuncionarioFiltrado(pesquisa: any, filtro: any){
-
+  pesquisarFuncionarioFiltrado(info: any){
+    this.isLoading = true;
+    fetch('http://localhost/exercicio/endpoints/funcionarios/consultar_funcionario_por_filtro.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        { 
+          texto: info.search,
+          filtro: info.filtro
+        })
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+      this.funcionariosCadastrados = response['funcionarios']
+    })
+    .catch(erro => {
+      console.log(erro);
+    })
+    .finally(()=>{
+      this.isLoading = false;
+    })
   }
 
 
@@ -51,7 +73,7 @@ export class FuncionariosPage{
             Salario: dados.salario,
             dataNasc: dados.dataNasc,
             Pais: dados.pais,
-            cidade: dados.cidade,
+            Cidade: dados.cidade,
             CEP: dados.cep,
             Endereco: dados.endereco,
             Fone: dados.fone
@@ -67,7 +89,8 @@ export class FuncionariosPage{
     })
     .finally(()=>{
       this.isLoading = false;
-    })  
+      this.getFuncionarios();
+    }) 
   }
 
 
@@ -86,7 +109,7 @@ export class FuncionariosPage{
             Sobrenome: dadosAtualizados.sobrenome,
             Cargo: dadosAtualizados.cargo,
             Salario: dadosAtualizados.salario,
-            DataNasc: dadosAtualizados.dataNasc,
+            dataNasc: dadosAtualizados.dataNasc,
             Pais: dadosAtualizados.pais,
             Cidade: dadosAtualizados.cidade,
             CEP: dadosAtualizados.cep,
