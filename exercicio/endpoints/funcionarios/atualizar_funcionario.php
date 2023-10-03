@@ -8,7 +8,7 @@
 
         $requestData = json_decode($data);
 
-        $sql = "UPDATE funcionarios SET Nome='$requestData->Nome', Cargo='$requestData->Cargo', Endereco='$requestData->Endereco', Cidade='$requestData->Cidade', CEP='$requestData->CEP', Pais='$requestData->Pais', Fone='$requestData->Fone' WHERE CodFun='$requestData->CodFun'";
+        $sql = "UPDATE funcionarios SET Nome='$requestData->Nome', Cargo='$requestData->Cargo', DataNasc='$requestData->dataNasc', Salario='$requestData->Salario', Endereco='$requestData->Endereco', Cidade='$requestData->Cidade', CEP='$requestData->CEP', Pais='$requestData->Pais', Fone='$requestData->Fone' WHERE CodFun='$requestData->CodFun'";
 
         $result = $connection->query($sql);
 
