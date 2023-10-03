@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true">
 
-<ion-label>{{ this.nome_usuario }}</ion-label>
+<!-- <ion-label>{{ this.funcionariosCadastrados }}</ion-label> -->
 
 <form #pesquisar_funcionario='ngForm' (ngSubmit)="pesquisarFuncionarioFiltrado(pesquisar_funcionario.value)">
     <ion-row>
@@ -33,24 +33,40 @@
   <ion-row>
     <ion-button id="open-modal" color="success"shape="round">+ Novo Funcionário</ion-button>
   </ion-row>
-  
+
+
     <ion-row>
       <ion-col size="12">
         <ion-list>
+
+          <ion-grid>
+            <ion-row>
+                <ion-col class="campo-lista">NOME</ion-col>
+                <ion-col class="campo-lista">SOBRENOME</ion-col>
+                <ion-col class="campo-lista">SALÁRIO</ion-col>
+                <ion-col class="campo-lista">DT. NASC</ion-col>
+                <ion-col class="campo-lista">ENDEREÇO</ion-col>
+                <ion-col class="campo-lista">CIDADE</ion-col>
+                <ion-col class="campo-lista">CEP</ion-col>
+                <ion-col class="campo-lista">PAÍS</ion-col>
+                <ion-col class="campo-lista">TELEFONE</ion-col>
+                <ion-col class="campo-lista">CARGO</ion-col>
+            </ion-row>
+          </ion-grid>
+
           <ng-container *ngFor="let funcionario of this.funcionariosCadastrados">
             <form #atualizar_funcionario='ngForm' (ngSubmit)="atualizarFuncionario(funcionario.CodFun, atualizar_funcionario.value)">
             <ion-item>
-                <ion-label>{{ funcionario.CodFun }}</ion-label>
-                <ion-input [(ngModel)]="funcionario.Nome" name="nome"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Sobrenome" name="sobrenome"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Salario" name="salario"></ion-input>
-                <ion-input [(ngModel)]="funcionario.DataNasc" name="dataNasc"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Endereco" name="endereco"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Cidade" name="cidade"></ion-input>
-                <ion-input [(ngModel)]="funcionario.CEP" name="cep"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Pais" name="pais"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Fone" name="fone"></ion-input>
-                <ion-input [(ngModel)]="funcionario.Cargo" name="cargo"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Nome" class="registrosDaTabela" name="nome"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Sobrenome" class="registrosDaTabela" name="sobrenome"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Salario" class="registrosDaTabela" name="salario"></ion-input>
+                <ion-input [(ngModel)]="funcionario.DataNasc" class="registrosDaTabela" name="dataNasc"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Endereco" class="registrosDaTabela" name="endereco"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Cidade" class="registrosDaTabela" name="cidade"></ion-input>
+                <ion-input [(ngModel)]="funcionario.CEP" class="registrosDaTabela" name="cep"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Pais" class="registrosDaTabela" name="pais"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Fone" class="registrosDaTabela" name="fone"></ion-input>
+                <ion-input [(ngModel)]="funcionario.Cargo" class="registrosDaTabela" name="cargo"></ion-input>
                 
               <ion-button color="success" type="submit"><ion-icon name="checkmark-outline"></ion-icon></ion-button> 
               <ion-button color="danger" (click)="deletarFuncionario(funcionario.CodFun)"><ion-icon name="close-outline"></ion-icon></ion-button>
